@@ -1,0 +1,51 @@
+---
+title: "FA_7_Baltazar"
+output: html_document
+date: "2023-04-19"
+---
+
+```{r setup, include=FALSE}
+#15
+1 - punif(10, min = 2, max = 10)
+set.seed(123) # for reproducibility
+Memory_sticks <- runif(n = 50, min = 2, max = 12)
+hist(Memory_sticks, main = "Memory Stick Length", xlab = "Length (mm)")
+Mean_Memorysticks <- mean(Memory_sticks)
+Mean_Memorysticks
+Var_Memorysticks <- var(Memory_sticks)
+Var_Memorysticks
+```
+
+```{r}
+#2. A.
+lower = 2
+upper = 6
+b <- 0.15
+f <- function(x) ifelse(6 > x & x > 2, 0.025*x + b, 0)
+PDensity <- integrate(f, lower = 2, upper = 6)$val
+y <- 0.1
+Genuine_Probability <- (abs(PDensity - 1) < y) 
+Genuine_Probability
+# 2. B.
+Exceed3 <- integrate(f, lower = 3, upper = 6)$val
+cat("Probability that measurement exceeds 3 is =", Exceed3)
+# 2. C.
+F_EX <- integrate(function(x) x * f(x), lower = 2, upper = 6)$val
+cat("Expected value of X =", round(F_EX, 2))
+```
+```{r}
+#3
+LowLim <- c(-3.14)
+UppLim <- c(3.14)
+
+pdf <- function(x) {
+  ifelse(abs(x) <= 3.14, 1/(2*3.14), 0)
+}
+probability_1 <- integrate(pdf, lower = LowLim, lower = 0)$val
+probability_1
+probability_2 <- integrate(pdf, lower = LowLim, upper = 3.14/2)$val
+probability_2
+
+```
+
+
